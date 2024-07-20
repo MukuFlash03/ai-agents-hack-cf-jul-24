@@ -19,7 +19,7 @@ def createJobApplySession(job_url="https://boards.greenhouse.io/fulfil/jobs/6044
     )
     return create_response.session_id
 
-def applyToJob(session_id):
+def applyToJob(job_url="https://boards.greenhouse.io/fulfil/jobs/6044634003?source=LinkedIn"):
     job_form_response = client.browse(
         # cmd="""
         #         Can you please apply for the job by filling out the form?
@@ -39,10 +39,13 @@ def applyToJob(session_id):
         # cmd="""
         #         Click the submit button at the bottom of the form.
         #     """,
-        session_id=session_id
+        url=job_url,
+        local=True
     )
 
-    click_extension_button(cursor_positions['chrome']['simplify_button_cross_onsubmit'][0], cursor_positions['chrome']['simplify_button_cross_onsubmit'][1])
+    return job_form_response.session_id
+
+    # click_extension_button(cursor_positions['chrome']['simplify_button_cross_onsubmit'][0], cursor_positions['chrome']['simplify_button_cross_onsubmit'][1])
 
 
 def closeWindowAfterSubmit(session_id):
@@ -62,7 +65,7 @@ def closeSession(session_id):
 )
     
 def applyAllJobs(job_url):
-    session_id = createJobApplySession(job_url)
-    managePopups()
-    applyToJob(session_id)
-    closeWindowAfterSubmit(session_id)
+    # session_id = createJobApplySession(job_url)
+    # managePopups()
+    session_id = applyToJob()
+    # closeWindowAfterSubmit(session_id)

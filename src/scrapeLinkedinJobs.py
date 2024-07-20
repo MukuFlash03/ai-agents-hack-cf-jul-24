@@ -24,46 +24,51 @@ def createLinkedInSession():
     )
     return create_response.session_id
 
-def retrieveSavedJobs(session_id):
+def retrieveSavedJobs():
     scraped_jobs = []
-    has_more = True
-    page = 1
+    # has_more = True
+    # page = 1
 
     retrieve_response = client.retrieve(
-            session_id=session_id,
-            cmd="""
-                You should be on the Saved jobs page now.
-                Now, there should a list of jobs listed below the 'Saved jobs' heading.
-                Once you are there, do not click anywhere else on any jobs.
-                There might always be a 'Next' button at the bottom of the list of jobs.
-                Do not click the other job categories at the top of the page that are besides the 'Saved jobs' heading.
-                The maximum number of jobs per page is 10.
-                The jobs might be spread across multiple pages and will be paginated by the URL using the query parameter 'start'.
-                The 'start' query parameter is the starting index of the jobs list on the current page.
-                The indexing is zero based and continues from one plus the index of the last job on the previous page.
-                If you don't see the  'Next' button at the bottom of the list of jobs, then you have reached the last page and you can stop this current retrieve operation.
-                Each job has these fields visible: Job title, Company, Location, Posted date.
-                There might also be a 'Actively recruiting' text with a check mark icon next to it, but you can ignore it.
-                I want you to scrape the job title, company, location, and posted time for each job.
-                Do not click on the title of the job on the saved jobs list.
-                Do not click on any other button under the 'My Jobs' heading.
-                Only go to the next page if you see a Next button towards the bottom right of the jobs list.
-                If you don't see the  'Next' button at the bottom of the list of jobs, then you have reached the last page and you can stop this current retrieve operation.
-                Then, I want you to click the 'Next' button to go to the next page, until you reach the last page.
-                Only scrape the requested data for all the jobs listed on the current page.
-                """,
+            url="https://www.linkedin.com/my-items/saved-jobs/",
+            # cmd="""
+            #     You should be on the Saved jobs page now.
+            #     Now, there should a list of jobs listed below the 'Saved jobs' heading.
+            #     Once you are there, do not click anywhere else on any jobs.
+            #     There might always be a 'Next' button at the bottom of the list of jobs.
+            #     Do not click the other job categories at the top of the page that are besides the 'Saved jobs' heading.
+            #     The maximum number of jobs per page is 10.
+            #     The jobs might be spread across multiple pages and will be paginated by the URL using the query parameter 'start'.
+            #     The 'start' query parameter is the starting index of the jobs list on the current page.
+            #     The indexing is zero based and continues from one plus the index of the last job on the previous page.
+            #     If you don't see the  'Next' button at the bottom of the list of jobs, then you have reached the last page and you can stop this current retrieve operation.
+            #     Each job has these fields visible: Job title, Company, Location, Posted date.
+            #     There might also be a 'Actively recruiting' text with a check mark icon next to it, but you can ignore it.
+            #     I want you to scrape the job title, company, location, and posted time for each job.
+            #     Do not click on the title of the job on the saved jobs list.
+            #     Do not click on any other button under the 'My Jobs' heading.
+            #     Only go to the next page if you see a Next button towards the bottom right of the jobs list.
+            #     If you don't see the  'Next' button at the bottom of the list of jobs, then you have reached the last page and you can stop this current retrieve operation.
+            #     Then, I want you to click the 'Next' button to go to the next page, until you reach the last page.
+            #     Only scrape the requested data for all the jobs listed on the current page.
+            #     """,
+            cmd="Get list of jobs on the Saved jobs page.",
             fields=["job_title", "company", "location", "posted_time"],
-            scroll_to_bottom=True,
+            # scroll_to_bottom=True,
+            local=True
             # render_js=True
         )
     
-    scraped_jobs.extend(retrieve_response.data)
-    print(f"Scraped page {page} with {len(retrieve_response.data)} jobs")
-    page += 1
-    step_response = client.sessions.step(
-        session_id=session_id,
-        cmd="Click the 'Next' button to go to the next page."
-    )
+    data = retrieve_response.data
+    print(data)
+    
+    # scraped_jobs.extend(retrieve_response.data)
+    # print(f"Scraped page {page} with {len(retrieve_response.data)} jobs")
+    # page += 1
+    # step_response = client.sessions.step(
+    #     session_id=session_id,
+    #     cmd="Click the 'Next' button to go to the next page."
+    # )
 
     return scraped_jobs
 
@@ -95,13 +100,13 @@ def testSearch(session_id):
     )
 
 def scrapeJobs():
-    session_id = createLinkedInSession()
+    # session_id = createLinkedInSession()
     resetHighlightedJob()
     # testSearch(session_id)
-    scraped_jobs = retrieveSavedJobs(session_id)
+    scraped_jobs = retrieveSavedJobs()
     print(scraped_jobs)
-    storeJobsToJson(scraped_jobs)
-    closeSession(session_id)
+    # storeJobsToJson(scraped_jobs)
+    # closeSession(session_id)
     return scraped_jobs
 
 
