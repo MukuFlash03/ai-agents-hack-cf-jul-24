@@ -126,13 +126,13 @@ def find_jobs():
             "response": response
         }
     
-    # print(response.json())
+    print(response.json())
     return response.json()
 
 def parse_jobs_response(responseJson):
     # jobs = responseJson['data']['data']['data']['searchDashClustersByAll']['elements']['items']
     jobs = responseJson['data']['data']['searchDashClustersByAll']
-    print(jobs)
+    # print(jobs)
 
 
 response_json = find_jobs()
