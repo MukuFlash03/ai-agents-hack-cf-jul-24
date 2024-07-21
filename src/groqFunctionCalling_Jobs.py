@@ -82,11 +82,13 @@ tools = [
 ]
 
 def run_conversation(user_prompt):
+    # You are a function calling LLM that calls functions and executes the tasks in them, OR you can use the data extracted from the functions to answer questions around general queries.
+    # You are a function calling LLM that calls functions and executes the tasks in them, OR you can use the data extracted from the functions to answer questions around general queries. Also please keep the final output response from the function calls to just 1-2 lines so it is concise and brief.
     messages = [
         {
             "role": "system",
             "content": """
-                    You are a function calling LLM that calls functions and executes the tasks in them, OR you can use the data extracted from the functions to answer questions around general queries.
+                    You are a function calling LLM that calls functions and executes the tasks in them, OR you can use the data extracted from the functions to answer questions around general queries. Also please keep the final output response from the function calls to just 2-3 lines so it is concise and brief.
                 """
         },
         {
