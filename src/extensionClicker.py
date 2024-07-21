@@ -38,43 +38,33 @@ cursor_positions = {
     "empty_space": (602, 180),
     },
     'chrome': {
-        "button_autofill_1": (1228, 418),
-        "button_autofill_2": (1234, 477),
-        "popup_drag_start": (1215, 355),
-        "popup_drag_end": (865, 355),
-        "simplify_button_cross_onsubmit": (1026, 379),
-        "empty_space": (670, 95),
+        'greenhouse': {
+            "button_autofill_1": (1228, 418),
+            "button_autofill_2": (1234, 477),
+            "popup_drag_start": (1215, 355),
+            "popup_drag_end": (865, 355),
+            "simplify_button_cross_onsubmit": (1026, 379),
+            "empty_space": (670, 95),
+            "maximize_window": (97, 39),
+        },
+        'lever': {
+            "button_autofill_1": (1228, 414),
+            "button_autofill_2": (1234, 473),
+            "popup_drag_start": (1215, 355),
+            "popup_drag_end": (865, 355),
+            "simplify_button_cross_onsubmit": (1026, 379),
+            "empty_space": (670, 95),
+            "maximize_window": (97, 39),
+        }
     }
 }
 
-def managePopups():
-    # click_extension_button(cursor_positions['brave']['button_maximize'][0], cursor_positions['brave']['button_maximize'][1])
-    # time.sleep(1.5)
-    drag_multion_chat_extension(cursor_positions['chrome']['popup_drag_start'][0], cursor_positions['chrome']['popup_drag_start'][1], cursor_positions['chrome']['popup_drag_end'][0], cursor_positions['chrome']['popup_drag_end'][1])
+def managePopups(jobBoard):
+    drag_multion_chat_extension(cursor_positions['chrome'][jobBoard]['popup_drag_start'][0], cursor_positions['chrome'][jobBoard]['popup_drag_start'][1], cursor_positions['chrome'][jobBoard]['popup_drag_end'][0], cursor_positions['chrome'][jobBoard]['popup_drag_end'][1])
     time.sleep(1.5)
-    click_extension_button(cursor_positions['chrome']['button_autofill_1'][0], cursor_positions['chrome']['button_autofill_1'][1])
+    click_extension_button(cursor_positions['chrome'][jobBoard]['button_autofill_1'][0], cursor_positions['chrome'][jobBoard]['button_autofill_1'][1])
     time.sleep(1.5)
-    click_extension_button(cursor_positions['chrome']['button_autofill_2'][0], cursor_positions['chrome']['button_autofill_2'][1])
+    click_extension_button(cursor_positions['chrome'][jobBoard]['button_autofill_2'][0], cursor_positions['chrome'][jobBoard]['button_autofill_2'][1])
 
 if __name__ == "__main__":
     cursorPosition()
-
-# Main loop
-# try:
-#     for key, value in cursor_positions.items():         
-#         click_extension_button(value[0], value[1])
-#         # Wait for 5 minutes before clicking again
-#         time.sleep(5)
-#     drag_multion_chat_extension()
-# except KeyboardInterrupt:
-#     print("Script stopped by user")
-     
-# click_extension_button(cursor_positions['button_maximize'][0], cursor_positions['button_maximize'][1])
-# time.sleep(3)
-# drag_multion_chat_extension(cursor_positions['popup_drag_start'][0], cursor_positions['popup_drag_start'][1], cursor_positions['popup_drag_end'][0], cursor_positions['popup_drag_end'][1])
-# time.sleep(3)
-# click_extension_button(cursor_positions['button_autofill'][0], cursor_positions['button_autofill'][1])
-# time.sleep(3)
-# click_extension_button(cursor_positions['simplify_button_cross_onsubmit'][0], cursor_positions['simplify_button_cross_onsubmit'][1])
-# time.sleep(3)
-# click_extension_button(cursor_positions['simplify_button_cross_onsubmit'][0], cursor_positions['simplify_button_cross_onsubmit'][1])

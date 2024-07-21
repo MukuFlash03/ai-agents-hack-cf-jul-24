@@ -1,15 +1,16 @@
 from multion.client import MultiOn
 from dotenv import load_dotenv
 import os
-import time
 from extensionClicker import click_extension_button, cursor_positions, managePopups
 
 load_dotenv()
 
 multion_api_key = os.getenv('MULTION_API_KEY')
+agentops_api_key = os.getenv('AGENTOPS_API_KEY')
 
 client = MultiOn(
     api_key=multion_api_key,
+    agentops_api_key=agentops_api_key,
 )
 
 def createJobApplySession(job_url="https://boards.greenhouse.io/fulfil/jobs/6044634003?source=LinkedIn"):
@@ -17,33 +18,44 @@ def createJobApplySession(job_url="https://boards.greenhouse.io/fulfil/jobs/6044
         url=job_url,
         local=True
     )
+    click_extension_button(cursor_positions['chrome']['greenhouse']["maximize_window"][0], cursor_positions['chrome']['greenhouse']["maximize_window"][1])
     return create_response.session_id
 
-def applyToJob(session_id):
-    job_form_response = client.browse(
-        # cmd="""
-        #         Can you please apply for the job by filling out the form?
-        #         Use any test data you want to just fill out the form.
-        #         For the Resume field, 
-        #         Once done, click the submit button at the bottom.
-        #     """,
-        # cmd="""
-        #         Can you please apply for the job by filling out the form?
-        #         Once done, click the submit button at the bottom.
-        #     """,
+def visitJobApplication(session_id, job_url):
+    visit_job_board = client.browse(
         cmd="""
-                Can you please apply for the job?
-                Don't worry about filling out the form, it will be filled out automatically.
-                Just scroll down to the bottom of the form and click the submit button. 
-            """,
-        # cmd="""
-        #         Click the submit button at the bottom of the form.
-        #     """,
+            Click on the Apply button which should be present on the left hand side and you should land on a job application form page. 
+            Now don't do anything on the job page, the next function will handle it.
+        """,
+        url=job_url,
+        local=True,
         session_id=session_id
     )
+    print(visit_job_board.message)
 
-    click_extension_button(cursor_positions['chrome']['simplify_button_cross_onsubmit'][0], cursor_positions['chrome']['simplify_button_cross_onsubmit'][1])
+# def applyToJob(session_id):
+#     job_form_response = client.browse(
+#         # url=job_url,
+#         cmd="""
+#                 Wait for the 5 seconds for the form to be filled up.
+#                 Click the submit button at the bottom of the form.
+#             """,
+#         local=True,
+#         session_id=session_id
+#     )
+#     print(job_form_response.message)
 
+def applyToJob(session_id, job_url="https://boards.greenhouse.io/fulfil/jobs/6044634003?source=LinkedIn"):
+    job_form_response = client.browse(
+        url=job_url,
+        cmd=""".
+                Click the submit button at the bottom of the form.
+                The button will look blue in color and might say submit application.
+            """,
+        local=True,
+        session_id=session_id
+    )
+    print(job_form_response.message)
 
 def closeWindowAfterSubmit(session_id):
     job_submit_response = client.browse(
@@ -60,9 +72,10 @@ def closeSession(session_id):
     client.sessions.close(
         session_id=session_id
 )
-    
+
 def applyAllJobs(job_url):
-    session_id = createJobApplySession(job_url)
-    managePopups()
-    applyToJob(session_id)
-    closeWindowAfterSubmit(session_id)
+    session_id = createJobApplySession(job_url['url'])
+    # visitJobApplication(session_id, job_url['url'])
+    managePopups(job_url['board'])
+    # applyToJob(session_id)
+    applyToJob(session_id, job_url['url'])
