@@ -146,6 +146,15 @@ def run_conversation(user_prompt):
 
     return final_response
 
+def run_tests_e2e(text):
+    # user_prompt = "Can you please apply to my saved jobs from LinkedIn?"
+    # print(run_conversation(user_prompt))
+    # user_prompt = "It's pretty late now, past midnight here. What should I do to fall asleep early?"
+    user_prompt = text
+    # print(run_conversation(user_prompt))
+    final_response = run_conversation(user_prompt)
+    return final_response
+
 if __name__ == "__main__":
     # user_prompt = "Can you please apply to my saved jobs from LinkedIn?"
     # print(run_conversation(user_prompt))
