@@ -7,30 +7,30 @@ load_dotenv()
 
 wordware_api_key = os.getenv('WORDWARE_API_KEY')
 
-def text_to_speech_xi(text):
-    CHUNK_SIZE = 1024
-    url = "https://api.elevenlabs.io/v1/text-to-speech/cgSgspJ2msm6clMCkdW9"
+# def text_to_speech_xi(text):
+#     CHUNK_SIZE = 1024
+#     url = "https://api.elevenlabs.io/v1/text-to-speech/cgSgspJ2msm6clMCkdW9"
 
-    headers = {
-        "Accept": "audio/mpeg",
-        "Content-Type": "application/json",
-        "xi-api-key": xi_api_key
-    }
+#     headers = {
+#         "Accept": "audio/mpeg",
+#         "Content-Type": "application/json",
+#         "xi-api-key": xi_api_key
+#     }
 
-    data = {
-        "text": text,
-        "model_id": "eleven_monolingual_v1",
-        "voice_settings": {
-            "stability": 0.5,
-            "similarity_boost": 0.5
-        }
-    }
+#     data = {
+#         "text": text,
+#         "model_id": "eleven_monolingual_v1",
+#         "voice_settings": {
+#             "stability": 0.5,
+#             "similarity_boost": 0.5
+#         }
+#     }
 
-    response = requests.post(url, json=data, headers=headers)
-    with open('speech_xi.mp3', 'wb') as f:
-        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-            if chunk:
-                f.write(chunk)
+#     response = requests.post(url, json=data, headers=headers)
+#     with open('speech_xi.mp3', 'wb') as f:
+#         for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+#             if chunk:
+#                 f.write(chunk)
 
 
 def download_file(url, ):

@@ -21,7 +21,7 @@ wordware_api_key = os.getenv('WORDWARE_API_KEY')
 st.set_page_config(page_title='Groq Translator', page_icon='🎤')
 
 # Set page title
-st.title('Groq Translator')
+st.title('Easy ApplAI')
 
 # Load whisper model
 model = WhisperModel("base", device="cpu", compute_type="int8", cpu_threads=int(os.cpu_count() / 2))
