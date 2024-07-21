@@ -5,14 +5,18 @@ import json
 import datetime
 import time
 from  extensionClicker import click_extension_button, cursor_positions
+from fetchLinkedinJobs import fetch_job_urls
 
 load_dotenv()
 
 multion_api_key = os.getenv('MULTION_API_KEY')
+agentops_api_key = os.getenv('AGENTOPS_API_KEY')
 
 client = MultiOn(
     api_key=multion_api_key,
+    agentops_api_key=agentops_api_key,
 )
+
 
 def createLinkedInSession():
     create_response = client.sessions.create(
@@ -24,3 +28,5 @@ def createLinkedInSession():
 
 def scrapeJobs():
     session_id = createLinkedInSession()
+    job_urls = fetch_job_urls()
+    return job_urls
