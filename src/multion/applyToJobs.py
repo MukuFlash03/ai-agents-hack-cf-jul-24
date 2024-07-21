@@ -33,6 +33,7 @@ def applyToJob(job_url="https://boards.greenhouse.io/fulfil/jobs/6044634003?sour
         #     """,
         cmd="""
                 Can you please apply for the job?
+                Can you wait 5-10 seconds for form to be filled before clicking submit.
                 Don't worry about filling out the form, it will be filled out automatically.
                 Just scroll down to the bottom of the form and click the submit button. 
             """,
@@ -40,7 +41,7 @@ def applyToJob(job_url="https://boards.greenhouse.io/fulfil/jobs/6044634003?sour
         #         Click the submit button at the bottom of the form.
         #     """,
         url=job_url,
-        local=True
+        local=False,
     )
 
     return job_form_response.session_id
@@ -66,6 +67,6 @@ def closeSession(session_id):
     
 def applyAllJobs(job_url):
     # session_id = createJobApplySession(job_url)
-    # managePopups()
+    managePopups()
     session_id = applyToJob()
-    # closeWindowAfterSubmit(session_id)
+    closeWindowAfterSubmit(session_id)

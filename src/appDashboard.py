@@ -61,11 +61,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Find the most recent JSON file
-json_files = glob.glob('data/scrapedJobs/scraped_jobs_*.json')
-latest_file = max(json_files, key=os.path.getctime)
+# json_files = glob.glob('./data/scraped/scraped_jobs_*.json')
+# latest_file = max(json_files, key=os.path.getctime)
 
 # Load the JSON data
-with open(latest_file, 'r', encoding='utf-8') as f:
+# with open('./data/scraped/scraped_jobs_20240720_143315.json', 'r', encoding='utf-8') as f:
+with open('scraped_jobs_20240718_091022.json', 'r', encoding='utf-8') as f:
     jobs = json.load(f)
 
 # Display job information in horizontal cards
