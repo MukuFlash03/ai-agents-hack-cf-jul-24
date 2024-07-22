@@ -1,7 +1,7 @@
 # Easy-ApplAI - Automating Job Applications
 Multimodal AI agent for automatically applying to jobs
 
-Built this project for a 2-day hackathon sponsored by [MultiOn](https://www.multion.ai/), [AgentOps](https://www.agentops.ai/), [Groq](https://groq.com/), [Wordware](https://www.wordware.ai/), [Arize]([url](https://arize.com/)), [Anon](https://www.anon.com/), [Mem0]([url](https://github.com/mem0ai/mem0)), [Based Hardware](https://basedhardware.com/), [AWS]([url](https://aws.amazon.com/))
+Built this project for a 2-day hackathon sponsored by [MultiOn](https://www.multion.ai/), [AgentOps](https://www.agentops.ai/), [Groq](https://groq.com/), [Wordware](https://www.wordware.ai/), [Arize](https://arize.com/), [Anon](https://www.anon.com/), [Mem0](https://github.com/mem0ai/mem0), [Based Hardware](https://basedhardware.com/), [AWS](https://aws.amazon.com/)
 
 Full Demo Video ([Loom Link](https://www.loom.com/share/10888aadccdc45e19cae57882b42b905?sid=c52d9ced-c7d7-4108-a432-d8049c3b2661))
 
