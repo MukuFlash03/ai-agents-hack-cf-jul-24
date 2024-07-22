@@ -11,8 +11,11 @@ agentops.init(os.getenv('AGENTOPS_API_KEY'))
 job_url = "https://boards.greenhouse.io/fulfil/jobs/6044634003?source=LinkedIn"
 
 url_list_dict = [
-    { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/fulfil/jobs/6044634003?source=LinkedIn' },
+    { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/fulfil/jobs/6044634003' },
     { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/seesaw/jobs/4386481006' },
+    # { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/appliedintuition/jobs/4307279005' },
+    # { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/aerospike/jobs/7426743002' },
+    # { 'board': 'greenhouse', 'url': 'https://boards.greenhouse.io/seesaw/jobs/4386481006' },
     # { 'board': 'lever', 'url': 'https://jobs.lever.co/avela/53a20cb0-ae0d-4821-a850-c31a40804312/apply?lever-source=LinkedIn' }
 ]
 
