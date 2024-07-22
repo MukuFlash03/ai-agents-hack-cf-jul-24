@@ -77,7 +77,6 @@ if audio_bytes:
 
     # text_to_speech(final_response)
     text_to_speech_xi_curl(final_response)
-
     st.audio("speech.mp3", format="audio/mp3")
 
     # response.stream_to_file(speech_file_path)

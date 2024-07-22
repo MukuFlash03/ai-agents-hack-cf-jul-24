@@ -39,8 +39,8 @@ cursor_positions = {
     },
     'chrome': {
         'greenhouse': {
-            "button_autofill_1": (1228, 418),
-            "button_autofill_2": (1234, 477),
+            "button_autofill_1": (1232, 401),
+            "button_autofill_2": (1231, 458),
             "popup_drag_start": (1215, 355),
             "popup_drag_end": (865, 355),
             "simplify_button_cross_onsubmit": (1026, 379),
